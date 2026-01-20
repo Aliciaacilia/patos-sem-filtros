@@ -15,3 +15,32 @@ CREATE TABLE usuarios (
         FOREIGN KEY (tipo_id)
         REFERENCES tipos_usuario (tipo_id)
 );
+
+CREATE TABLE usuarios_moradores (
+    usuario_morador_id SERIAL PRIMARY KEY,
+
+    usuario_id INT NOT NULL UNIQUE,
+    nome_perfil VARCHAR(100) NOT NULL,
+
+    CONSTRAINT fk_usuario_morador
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuarios (usuario_id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS denuncias (
+    denuncia_id SERIAL PRIMARY KEY,
+
+    usuario_morador_id INT NOT NULL,
+    descricao TEXT NOT NULL,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(30) NOT NULL,
+    visibilidade VARCHAR(30) NOT NULL,
+    foto VARCHAR(255),
+    video VARCHAR(255),
+
+    CONSTRAINT fk_denuncia_morador
+        FOREIGN KEY (usuario_morador_id)
+        REFERENCES usuarios_moradores (usuario_morador_id)
+        ON DELETE CASCADE
+);
