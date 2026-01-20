@@ -97,3 +97,29 @@ CREATE TABLE categorias (
     nome VARCHAR(50) NOT NULL UNIQUE
 );
 
+ALTER TABLE denuncias
+ADD COLUMN categoria_id INT NOT NULL;
+
+ALTER TABLE denuncias
+ADD CONSTRAINT fk_denuncia_categoria
+    FOREIGN KEY (categoria_id)
+    REFERENCES categorias (categoria_id);
+
+CREATE TABLE comentarios_denuncia (
+    comentario_id SERIAL PRIMARY KEY,
+
+    denuncia_id INT NOT NULL,
+    usuario_morador_id INT NOT NULL,
+    comentario TEXT NOT NULL,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_comentario_denuncia
+        FOREIGN KEY (denuncia_id)
+        REFERENCES denuncias (denuncia_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_comentario_morador
+        FOREIGN KEY (usuario_morador_id)
+        REFERENCES usuarios_moradores (usuario_morador_id)
+        ON DELETE CASCADE
+);
