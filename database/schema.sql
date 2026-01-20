@@ -44,3 +44,32 @@ CREATE TABLE IF NOT EXISTS denuncias (
         REFERENCES usuarios_moradores (usuario_morador_id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE historico_postagens (
+    historico_id SERIAL PRIMARY KEY,
+
+    denuncia_id INT NOT NULL,
+    acao VARCHAR(50) NOT NULL,
+    descricao TEXT,
+
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_historico_denuncia
+        FOREIGN KEY (denuncia_id)
+        REFERENCES denuncias (denuncia_id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS notificacoes (
+    notificacao_id SERIAL PRIMARY KEY,
+
+    usuario_id INT NOT NULL,
+    mensagem TEXT NOT NULL,
+    visualizada BOOLEAN NOT NULL DEFAULT FALSE,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_notificacao_usuario
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuarios (usuario_id)
+        ON DELETE CASCADE
+);
