@@ -73,3 +73,22 @@ CREATE TABLE IF NOT EXISTS notificacoes (
         REFERENCES usuarios (usuario_id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE curtidas_denuncia (
+    curtida_id SERIAL PRIMARY KEY,
+
+    denuncia_id INT NOT NULL,
+    usuario_morador_id INT NOT NULL,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_curtida_denuncia
+        FOREIGN KEY (denuncia_id)
+        REFERENCES denuncias (denuncia_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_curtida_morador
+        FOREIGN KEY (usuario_morador_id)
+        REFERENCES usuarios_moradores (usuario_morador_id)
+        ON DELETE CASCADE
+);
+
