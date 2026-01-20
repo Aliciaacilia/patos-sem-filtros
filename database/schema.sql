@@ -92,3 +92,8 @@ CREATE TABLE curtidas_denuncia (
         ON DELETE CASCADE
 );
 
+CREATE TABLE categorias (
+    categoria_id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL UNIQUE
+);
+
