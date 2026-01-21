@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1705839999999",
+    "usuarioId": "1705831234567",
+    "titulo": "Buraco na rua principal",
+    "descricao": "Há um buraco grande na rua principal, causando acidentes.",
+    "categoria": "Infraestrutura",
+    "localizacao": "Centro",
+    "status": "pendente",
+    "data": "2026-01-21T14:32:10.000Z"
+  },
+  {
+    "id": "1769008141640",
+    "usuarioId": "1769007925979",
+    "titulo": "Buraco na avenida",
+    "descricao": "Há um buraco grande na Av. Central, próximo ao banco.",
+    "categoria": "infraestrutura",
+    "localizacao": "-23.5505,-46.6333",
+    "status": "pendente",
+    "data": "2026-01-21T15:09:01.641Z"
+  },
+  {
+    "id": "1769018899213",
+    "usuarioId": "1769018847539",
+    "titulo": "Buraco na avenidaa",
+    "descricao": "Há um buraco grande na Av. Central, próximo ao banco.",
+    "categoria": "infraestrutura",
+    "localizacao": "-23.5505,-46.6333",
+    "status": "pendente",
+    "data": "2026-01-21T18:08:19.213Z"
+  },
+  {
+    "id": "1769019052806",
+    "usuarioId": "1769019013130",
+    "titulo": "Buraco na avenidaa",
+    "descricao": "Há um buraco grande na Av. Centrall, próximo aoo banco.",
+    "categoria": "infraestrutura",
+    "localizacao": "-23.5505,-46.6333",
+    "status": "pendente",
+    "data": "2026-01-21T18:10:52.806Z"
+  },
+  {
+    "id": "1769019476794",
+    "usuarioId": "1769019013130",
+    "titulo": "Buraco na avenidaa",
+    "descricao": "Há um buraco grande na Av. Centrall, próximo aoo banco.",
+    "categoria": "infraestrutura",
+    "localizacao": "-23.5505,-46.6333",
+    "status": "pendente",
+    "data": "2026-01-21T18:17:56.795Z"
+  },
+  {
+    "id": "1769019910220",
+    "usuarioId": "1769019883388",
+    "titulo": "Buraco na avenidaa",
+    "descricao": "Há um buraco grande na Av. Centrall, próximo aoo bancooo.",
+    "categoria": "infraestrutura",
+    "localizacao": "-23.5505,-46.6333",
+    "status": "pendente",
+    "data": "2026-01-21T18:25:10.220Z"
+  }
+]
