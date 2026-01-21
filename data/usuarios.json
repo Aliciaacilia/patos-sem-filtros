@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1705830000000",
+    "nome": "Darysthon",
+    "email": "gdarysthon",
+    "senha": "123",
+    "anonimo": false
+  },
+  {
+    "id": "1769006964109",
+    "nome": "Darysthon",
+    "email": "darysthon",
+    "senha": "12345",
+    "anonimo": false
+  },
+  {
+    "id": "1769007925979",
+    "nome": "Darys",
+    "email": "darys@gmail.com",
+    "senha": "123456",
+    "anonimo": true
+  },
+  {
+    "id": "1769018847539",
+    "nome": "Gabriel",
+    "email": "Gabriel@gmail.com",
+    "senha": "123456",
+    "anonimo": false
+  },
+  {
+    "id": "1769019013130",
+    "nome": "Gabriel1",
+    "email": "Gabriel1@gmail.com",
+    "senha": "123456",
+    "anonimo": true
+  },
+  {
+    "id": "1769019883388",
+    "nome": "Gabriel123",
+    "email": "Gabriel123@gmail.com",
+    "senha": "123456",
+    "anonimo": true
+  }
+]
