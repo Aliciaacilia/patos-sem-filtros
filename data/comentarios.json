@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1769008326321",
+    "denunciaId": "1769008141640",
+    "usuarioId": "1769007925979",
+    "texto": "Já reportei isso semana passada e ainda não resolveram.",
+    "data": "2026-01-21T15:12:06.321Z"
+  },
+  {
+    "id": "1769008344051",
+    "denunciaId": "1769008141640",
+    "usuarioId": "1769007925979",
+    "texto": "Já reportei isso semana passada e ainda não resolveram.",
+    "data": "2026-01-21T15:12:24.051Z"
+  },
+  {
+    "id": "1769018914980",
+    "denunciaId": "1769008141640",
+    "usuarioId": "1769018847539",
+    "texto": "Já reportei isso semana passada e ainda não resolveramm.",
+    "data": "2026-01-21T18:08:34.980Z"
+  },
+  {
+    "id": "1769019064089",
+    "denunciaId": "1769008141640",
+    "usuarioId": "1769019013130",
+    "texto": "Já reportei isso semana passada e ainda não resolverammm.",
+    "data": "2026-01-21T18:11:04.089Z"
+  },
+  {
+    "id": "1769019925320",
+    "denunciaId": "1769008141640",
+    "usuarioId": "1769019883388",
+    "texto": "Já reportei isso semana passada e ainda não resolverammmm.",
+    "data": "2026-01-21T18:25:25.320Z"
+  }
+]
