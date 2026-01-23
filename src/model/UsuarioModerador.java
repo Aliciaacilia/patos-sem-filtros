@@ -1,5 +1,7 @@
 package model;
 
+import model.Usuario;
+
 public class UsuarioModerador extends Usuario {
 
     private String nivelAcesso;
