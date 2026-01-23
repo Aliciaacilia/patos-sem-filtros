@@ -11,7 +11,7 @@ public class UsuarioView {
         boolean rodando = true;
 
         while (rodando) {
-            System.out.println("\n===== SISTEMA PATOS SEM FILTROS =====");
+            System.out.println("\n===== PATOS SEM FILTROS =====");
             System.out.println("1. Cadastrar novo usuario");
             System.out.println("2. Sair");
             System.out.print("Escolha uma opcao: ");
@@ -23,17 +23,17 @@ public class UsuarioView {
                     solicitarDadosCadastro();
                     break;
                 case "2":
-                    System.out.println("Encerrando o sistema... Ate logo!");
+                    System.out.println("Saindo...");
                     rodando = false;
                     break;
                 default:
-                    System.out.println("Opcao invalida! Tente novamente.");
+                    System.out.println("Opcao inválida! Tente novamente.");
             }
         }
     }
 
     private void solicitarDadosCadastro() {
-        System.out.println("\n--- Formulario de Cadastro ---");
+        System.out.println("\n--- Formulário de Cadastro ---");
         
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
