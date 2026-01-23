@@ -1,7 +1,9 @@
 package controller;
 
-import service.UsuarioService;
-import model.Usuario;          
+import model.Usuario;
+import model.UsuarioModerador; 
+import model.UsuarioMorador;
+import service.UsuarioService;         
 
 public class UsuarioController {
 
