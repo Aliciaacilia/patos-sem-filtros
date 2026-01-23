@@ -1,7 +1,7 @@
 package controller;
 
-import model.Usuario;
 import service.UsuarioService;
+import model.Usuario;          
 
 public class UsuarioController {
 
@@ -9,7 +9,21 @@ public class UsuarioController {
 
     public void cadastrar(String nome, String email, String senha, String tipo) {
 
-        Usuario usuario = new Usuario();
+        Usuario usuario;
+
+        switch (tipo.toUpperCase()) {
+            case "MORADOR":
+                usuario = new UsuarioMorador();
+                break;
+
+            case "MODERADOR":
+                usuario = new UsuarioModerador();
+                break;
+
+            default:
+                throw new IllegalArgumentException("Tipo de usuário inválido");
+        }
+
         usuario.setNome(nome);
         usuario.setEmail(email);
         usuario.setSenha(senha);

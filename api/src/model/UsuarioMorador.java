@@ -1,3 +1,5 @@
+package model;
+
 public class UsuarioMorador extends Usuario {
 
     private String cpf;

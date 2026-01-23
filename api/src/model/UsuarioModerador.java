@@ -1,3 +1,5 @@
+package model;
+
 public class UsuarioModerador extends Usuario {
 
     private String nivelAcesso;

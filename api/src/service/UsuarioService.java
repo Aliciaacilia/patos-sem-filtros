@@ -1,6 +1,7 @@
 package service;
 
-import model.Usuario;
+import repository.UsuarioRepository;
+import model.Usuario;       
 import repository.UsuarioRepository;
 
 public class UsuarioService {
