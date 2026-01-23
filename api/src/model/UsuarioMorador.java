@@ -19,7 +19,6 @@ public class UsuarioMorador extends Usuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-}
 
     public String getTipo() {
         return tipo;
