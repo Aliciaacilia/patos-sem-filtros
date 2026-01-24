@@ -11,9 +11,10 @@ public class UsuarioView {
         boolean rodando = true;
 
         while (rodando) {
-            System.out.println("\n===== PATOS SEM FILTROS =====");
-            System.out.println("1. Cadastrar novo usuario");
-            System.out.println("2. Sair");
+            System.out.println("\n------- PATOS SEM FILTROS -------");
+            System.out.println("1. Login/cadastrar novo usuário");
+            System.out.println("2. ");
+            System.out.println("3. Sair");
             System.out.print("Escolha uma opcao: ");
 
             String opcao = scanner.nextLine();
