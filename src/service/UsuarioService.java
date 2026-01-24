@@ -1,7 +1,6 @@
 package service;
 
-import repository.UsuarioRepository;
-import model.Usuario;       
+import model.Usuario;
 import repository.UsuarioRepository;
 
 public class UsuarioService {
@@ -19,6 +18,19 @@ public class UsuarioService {
 
         repository.salvar(usuario);
         return true;
+    }
+
+    public Usuario autenticar(String email, String senha) {
+    Usuario usuario = repository.buscarPorEmail(email);
+    
+    if (usuario != null) {
+        String senhaDigitadaHash = String.valueOf(senha.hashCode());
+        
+        if (usuario.getSenha().equals(senhaDigitadaHash)) {
+            return usuario; 
+            }
+        }
+        return null; 
     }
 }
 
