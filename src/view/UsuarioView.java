@@ -1,9 +1,8 @@
 package view;
 
 import controller.UsuarioController;
-import model.Usuario;
-
 import java.util.Scanner;
+import model.Usuario;
 
 public class UsuarioView {
     private UsuarioController controller = new UsuarioController();
@@ -23,9 +22,7 @@ public class UsuarioView {
 
             switch (opcao) {
                 case "1":
-                    System.out.println("\n------- Login -------");
-
-                    
+                    Login();
                     break;
                 case "2":
                     solicitarDadosCadastro();
@@ -75,7 +72,7 @@ public class UsuarioView {
         System.out.println("Olá, " + userLogado.getNome());
         
         HomeView home = new HomeView();
-        home.exibirHome(userLogado.getNome()); 
+        home.exibirMenuInterno(userLogado.getNome()); 
     } else {
         System.out.println("E-mail ou senha incorretos.");
     }
