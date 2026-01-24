@@ -4,11 +4,9 @@ import model.Usuario;
 import repository.UsuarioRepository;
 
 public class UsuarioService {
-
     private UsuarioRepository repository = new UsuarioRepository();
 
     public boolean cadastrar(Usuario usuario) {
-
         if (repository.buscarPorEmail(usuario.getEmail()) != null) {
             return false;
         }
@@ -21,16 +19,14 @@ public class UsuarioService {
     }
 
     public Usuario autenticar(String email, String senha) {
-    Usuario usuario = repository.buscarPorEmail(email);
-    
-    if (usuario != null) {
-        String senhaDigitadaHash = String.valueOf(senha.hashCode());
-        
-        if (usuario.getSenha().equals(senhaDigitadaHash)) {
-            return usuario; 
+        Usuario usuario = repository.buscarPorEmail(email);
+        if (usuario != null) {
+            String senhaDigitadaHash = String.valueOf(senha.hashCode());
+            if (usuario.getSenha().equals(senhaDigitadaHash)) {
+                return usuario;
             }
         }
-        return null; 
+        return null;
     }
 
     public void atualizarAnonimato(int usuarioId, boolean anonimo) {
@@ -39,5 +35,4 @@ public class UsuarioService {
             usuario.setAnonimo(anonimo);
         }
     }
-}
-
+} 

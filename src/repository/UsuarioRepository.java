@@ -1,35 +1,77 @@
 package repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 import model.Usuario;
+import databaseconfig.DatabaseConfig;
 
 public class UsuarioRepository {
 
-    private static List<Usuario> usuarios = new ArrayList<>();
-    private static int proximoId = 1;
-
     public void salvar(Usuario usuario) {
-        usuario.setId(proximoId++);
-        usuarios.add(usuario);
+        String sql = "INSERT INTO usuarios (nome, email, senha, email_verificado, tipo_id) " +
+                     "VALUES (?, ?, ?, false, (SELECT tipo_id FROM tipos_usuario WHERE nome_tipo = ?))";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setString(4, usuario.getTipo());
+            stmt.executeUpdate();
+
+            // Recupera o ID gerado
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                usuario.setId(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Usuario buscarPorEmail(String email) {
-        for (Usuario u : usuarios) {
-            if (u.getEmail().equalsIgnoreCase(email)) {
-                return u;
+        String sql = "SELECT usuario_id, nome, email, senha, email_verificado, tipo_id " +
+                     "FROM usuarios WHERE email = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Usuario usuario = new Usuario(
+                    rs.getInt("usuario_id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("senha"),
+                    rs.getBoolean("email_verificado"),
+                    String.valueOf(rs.getInt("tipo_id"))
+                );
+                return usuario;
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     public Usuario buscarPorId(int id) {
-        for (Usuario u : usuarios) {
-            if (u.getId() == id) {
-                return u;
+        String sql = "SELECT usuario_id, nome, email, senha, email_verificado, tipo_id " +
+                     "FROM usuarios WHERE usuario_id = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Usuario usuario = new Usuario(
+                    rs.getInt("usuario_id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("senha"),
+                    rs.getBoolean("email_verificado"),
+                    String.valueOf(rs.getInt("tipo_id"))
+                );
+                return usuario;
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 }
-
