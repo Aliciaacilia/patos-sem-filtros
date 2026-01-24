@@ -8,6 +8,8 @@ public abstract class Usuario {
     protected String senha;
     protected boolean emailVerificado;
     protected String tipo;
+    protected boolean anonimo;
+
 
     public Usuario() {
     }
@@ -68,4 +70,13 @@ public abstract class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public boolean isAnonimo() {
+        return anonimo;
+        }
+
+    public void setAnonimo(boolean anonimo) {
+        this.anonimo = anonimo;
+    }
+
 }

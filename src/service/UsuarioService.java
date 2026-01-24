@@ -32,5 +32,12 @@ public class UsuarioService {
         }
         return null; 
     }
+
+    public void atualizarAnonimato(int usuarioId, boolean anonimo) {
+        Usuario usuario = repository.buscarPorId(usuarioId);
+        if (usuario != null) {
+            usuario.setAnonimo(anonimo);
+        }
+    }
 }
 
