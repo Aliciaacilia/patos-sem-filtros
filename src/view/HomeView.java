@@ -12,7 +12,6 @@ public class HomeView {
             System.out.println("\n--- Usuário: " + nomeUsuario.toUpperCase() + " ---");
             System.out.println("1. Feed de denúncias");
             System.out.println("2. Enviar nova denúncia");
-
             System.out.println("3. Minhas denúncias");
             System.out.println("4. Meu perfil");
             System.out.println("5. Logout");
@@ -25,8 +24,12 @@ public class HomeView {
                  // case "2": criarDenuncia(); break;
                 //case "3": verHistorico(); break;
                 //case "4": verPerfil(); break;
-                //case "5": logado = false; break;
-                default: System.out.println("Opção inválida.");
+                case "5": 
+                    System.out.println("Logout");
+                    logado = false; 
+                    break;
+                default: 
+                    System.out.println("Opção inválida.");
             }
         }
     }
