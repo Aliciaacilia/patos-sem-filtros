@@ -21,6 +21,8 @@ public class UsuarioView {
 
             switch (opcao) {
                 case "1":
+                    System.out.println("\n------- Login -------");
+
                     
                     break;
                 case "2":
@@ -57,4 +59,22 @@ public class UsuarioView {
         System.out.println(" Erro: " + e.getMessage());
         }
     }
+
+    private void Login() {
+    System.out.println("\n------- Login -------");
+    System.out.print("E-mail: ");
+    String email = scanner.nextLine();
+    System.out.print("Senha: ");
+    String senha = scanner.nextLine();
+
+    boolean logado = controller.login(email, senha);
+
+    if (logado) {
+        System.out.println(" ");
+        HomeView home = new HomeView();
+        home.exibirHome(email); 
+    } else {
+        System.out.println("E-mail ou senha incorretos.");
+    }
+  }
 }
