@@ -41,6 +41,10 @@ public class UsuarioController {
     }
 
     public Usuario fazerLogin(String email, String senha) {
-    return service.autenticar(email, senha);
+        return service.autenticar(email, senha);
+    }
+
+    public void atualizarAnonimato(int usuarioId, boolean anonimo) {
+        service.atualizarAnonimato(usuarioId, anonimo);
     }
 }
