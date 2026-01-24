@@ -21,9 +21,12 @@ public class UsuarioView {
 
             switch (opcao) {
                 case "1":
-                    solicitarDadosCadastro();
+                    
                     break;
                 case "2":
+                    solicitarDadosCadastro();
+                    break;
+                case "3":
                     System.out.println("Saindo...");
                     rodando = false;
                     break;
