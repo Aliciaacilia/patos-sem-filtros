@@ -1,6 +1,8 @@
 package view;
 
 import controller.UsuarioController;
+import model.Usuario;
+
 import java.util.Scanner;
 
 public class UsuarioView {
@@ -67,12 +69,13 @@ public class UsuarioView {
     System.out.print("Senha: ");
     String senha = scanner.nextLine();
 
-    boolean logado = controller.login(email, senha);
+    Usuario userLogado = controller.fazerLogin(email, senha);
 
-    if (logado) {
-        System.out.println(" ");
+    if (userLogado != null) {
+        System.out.println("Olá, " + userLogado.getNome());
+        
         HomeView home = new HomeView();
-        home.exibirHome(email); 
+        home.exibirHome(userLogado.getNome()); 
     } else {
         System.out.println("E-mail ou senha incorretos.");
     }
