@@ -39,4 +39,8 @@ public class UsuarioController {
             System.out.println("Email já cadastrado.");
         }
     }
+
+    public Usuario fazerLogin(String email, String senha) {
+    return service.autenticar(email, senha);
+    }
 }
