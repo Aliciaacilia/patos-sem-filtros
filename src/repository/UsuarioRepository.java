@@ -14,7 +14,11 @@ public class UsuarioRepository {
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getEmail());
             stmt.setString(3, usuario.getSenha());
-            stmt.setString(4, usuario.getTipo());
+            if (usuario.getTipo() != null) {
+            String tipoOriginal = usuario.getTipo().trim();
+            String tipoFormatado = tipoOriginal.substring(0, 1).toUpperCase() + tipoOriginal.substring(1).toLowerCase();
+            stmt.setString(4, tipoFormatado);
+            }
             stmt.executeUpdate();
 
             // Recupera o ID gerado

@@ -14,3 +14,5 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+databaseconfig/DatabaseConfig.java
