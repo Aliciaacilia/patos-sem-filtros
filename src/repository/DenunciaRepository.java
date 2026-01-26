@@ -9,22 +9,25 @@ import databaseconfig.DatabaseConfig;
 public class DenunciaRepository {
 
     public void salvar(Denuncia denuncia) {
-        String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, denuncia.getUsuarioMoradorId());
-            stmt.setString(2, denuncia.getDescricao());
-            stmt.setString(3, denuncia.getStatus());
-            stmt.setString(4, denuncia.getVisibilidade());
-            stmt.setString(5, denuncia.getFoto());
-            stmt.setString(6, denuncia.getVideo());
-            stmt.setInt(7, denuncia.getCategoriaId());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id) " +
+                 "VALUES ((SELECT usuario_morador_id FROM usuarios_moradores WHERE usuario_id = ?), ?, ?, ?, ?, ?, ?)";
+    
+    try (Connection conn = DatabaseConfig.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setInt(1, denuncia.getUsuarioMoradorId());
+        stmt.setString(2, denuncia.getDescricao());
+        stmt.setString(3, denuncia.getStatus());
+        stmt.setString(4, denuncia.getVisibilidade());
+        stmt.setString(5, denuncia.getFoto());
+        stmt.setString(6, denuncia.getVideo());
+        stmt.setInt(7, denuncia.getCategoriaId()); 
+        
+        stmt.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 
     public List<Denuncia> listarPorUsuarioMorador(int usuarioMoradorId) {
         List<Denuncia> resultado = new ArrayList<>();
