@@ -28,4 +28,8 @@ public class DenunciaController {
                 + " | Data/Hora: " + d.getDataHora());
         }
     }
+
+    public List<Denuncia> listarDenuncias() {
+        return service.listarFeed();
+    }
 }

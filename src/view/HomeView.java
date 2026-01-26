@@ -1,7 +1,9 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 import controller.DenunciaController;
+import model.Denuncia;
 
 public class HomeView {
     private Scanner scanner = new Scanner(System.in);
@@ -54,8 +56,21 @@ public class HomeView {
 
     private void exibirFeed() {
         System.out.println("\n--- Feed de denúncias ---");
-        // Aqui você pode implementar DenunciaRepository.listarTodas()
-    }
+        List<Denuncia> lista = denunciaController.listarDenuncias(); 
+
+        if (lista.isEmpty()) {
+            System.out.println("Nenhuma denúncia registrada ainda.");
+        } else {
+                for (Denuncia d : lista) {
+                System.out.println("----------------------------------");
+                System.out.println("ID: " + d.getDenunciaId());
+                System.out.println("Descrição: " + d.getDescricao());
+                System.out.println("Status: [" + d.getStatus() + "]");
+                System.out.println("Categoria: " + d.getCategoriaId()); 
+                System.out.println("Postado em: " + d.getDataHora());
+                }
+            }
+        }
 
     private void criarDenuncia() {
         System.out.println("\n--- Nova denúncia ---");
