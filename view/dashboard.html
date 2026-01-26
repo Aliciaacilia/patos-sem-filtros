@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Patos Sem Filtros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="dashboard.html" class="logo">
+                <div class="Logosize">
+                    <img src="Image/LOGO.png" alt="Logo Patos Sem Filtros">
+                </div>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="denuncias.html" class="nav-link">
+                    <i class="fas fa-bullhorn"></i> Denúncias
+                </a>
+                <a href="sobre.html" class="nav-link">
+                    <i class="fas fa-user"></i> Perfil
+                </a>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <span>Olá, Usuário</span>
+                    </div>
+                    <div class="dropdown">
+                        <a href="sobre.html" class="dropdown-item">
+                            <i class="fas fa-user"></i> Meu Perfil
+                        </a>
+                        <a href="denuncias.html?filter=my" class="dropdown-item">
+                            <i class="fas fa-list"></i> Minhas Denúncias
+                        </a>
+                        <a href="sobre.html?tab=filters" class="dropdown-item">
+                            <i class="fas fa-filter"></i> Filtros
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="index.html" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+
+    <main class="container">
+      
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p>Acompanhe suas denúncias e atividades</p>
+        </div>
+
+     
+        <div class="quick-actions">
+            <a href="denuncias.html?new=true" class="action-card primary">
+                <i class="fas fa-plus-circle"></i>
+                <h3>Nova Denúncia</h3>
+                <p>Registre um novo problema</p>
+            </a>
+            
+            <a href="denuncias.html" class="action-card">
+                <i class="fas fa-eye"></i>
+                <h3>Ver Todas</h3>
+                <p>Explore denúncias da comunidade</p>
+            </a>
+            
+            <a href="denuncias.html?filter=my" class="action-card">
+                <i class="fas fa-history"></i>
+                <h3>Minhas Denúncias</h3>
+                <p>Acompanhe suas submissões</p>
+            </a>
+            
+            <a href="sobre.html?tab=filters" class="action-card">
+                <i class="fas fa-filter"></i>
+                <h3>Filtrar</h3>
+                <p>Busque por categoria ou local</p>
+            </a>
+        </div>
+
+       
+        <section class="recent-section">
+            <div class="section-header">
+                <h2>Denúncias Recentes</h2>
+                <a href="denuncias.html" class="btn btn-outline">Ver todas</a>
+            </div>
+            
+            <div class="denuncias-grid">
+            
+                <div class="denuncia-item">
+                    <div class="denuncia-header">
+                        <span class="denuncia-category infra">Infraestrutura</span>
+                        <span class="denuncia-status pending">Pendente</span>
+                    </div>
+                    <h4>Lâmpada queimada</h4>
+                    <p>Lâmpada do meio está queimada na Praça Norte</p>
+                    <div class="denuncia-footer">
+                        <span class="denuncia-date">há 2 horas</span>
+                        <div class="denuncia-stats">
+                            <span><i class="fas fa-thumbs-up"></i> 12</span>
+                            <span><i class="fas fa-comment"></i> 3</span>
+                        </div>
+                    </div>
+                </div>
+                
+           
+                <div class="denuncia-item">
+                    <div class="denuncia-header">
+                        <span class="denuncia-category limpeza">Limpeza</span>
+                        <span class="denuncia-status in-progress">Em andamento</span>
+                    </div>
+                    <h4>Banheiro masculino sujo</h4>
+                    <p>Praça Norte - Banheiro 01</p>
+                    <div class="denuncia-footer">
+                        <span class="denuncia-date">há 1 dia</span>
+                        <div class="denuncia-stats">
+                            <span><i class="fas fa-thumbs-up"></i> 24</span>
+                            <span><i class="fas fa-comment"></i> 8</span>
+                        </div>
+                    </div>
+                </div>
+                
+         
+                <div class="denuncia-item">
+                    <div class="denuncia-header">
+                        <span class="denuncia-category seguranca">Segurança</span>
+                        <span class="denuncia-status resolved">Resolvido</span>
+                    </div>
+                    <h4>Portão com defeito</h4>
+                    <p>Entrada Principal - Portão Sul</p>
+                    <div class="denuncia-footer">
+                        <span class="denuncia-date">há 3 dias</span>
+                        <div class="denuncia-stats">
+                            <span><i class="fas fa-thumbs-up"></i> 42</span>
+                            <span><i class="fas fa-comment"></i> 15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ 
+        <section class="stats-section">
+            <div class="stats-card">
+                <h3>Suas Denúncias</h3>
+                <div class="stats-numbers">
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">2</span>
+                        <span class="stat-label">Pendentes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">2</span>
+                        <span class="stat-label">Em Andamento</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">1</span>
+                        <span class="stat-label">Resolvidas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-card">
+                <h3>Atividade da Comunidade</h3>
+                <div class="stats-numbers">
+                    <div class="stat-item">
+                        <span class="stat-value">1,240</span>
+                        <span class="stat-label">Denúncias</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">560</span>
+                        <span class="stat-label">Usuários</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">89%</span>
+                        <span class="stat-label">Taxa de Resolução</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('show');
+        });
+
+ 
+        const userMenu = document.querySelector('.user-info');
+        const dropdown = document.querySelector('.dropdown');
+        
+        userMenu.addEventListener('click', function() {
+            dropdown.classList.toggle('show');
+        });
+
+
+        document.addEventListener('click', function(event) {
+            if (!userMenu.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
