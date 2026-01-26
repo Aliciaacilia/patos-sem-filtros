@@ -17,5 +17,5 @@ public class DenunciaService {
 
     public List<Denuncia> listarFeed() {
     return repository.consultarFeedGeral();
-}
+    }
 }
