@@ -76,7 +76,6 @@ public class UsuarioView {
         if (userLogado != null) {
             System.out.println("Olá, " + userLogado.getNome());
 
-            // Passa também o ID do usuário para o HomeView
             HomeView home = new HomeView(userLogado.getId(), userLogado.getNome());
             home.exibirMenuInterno();
         } else {
