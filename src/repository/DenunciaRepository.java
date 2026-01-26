@@ -55,4 +55,32 @@ public class DenunciaRepository {
         }
         return resultado;
     }
+
+    public List<Denuncia> consultarFeedGeral() {
+    List<Denuncia> denuncias = new ArrayList<>();
+
+    String sql = "SELECT * FROM denuncias ORDER BY data_hora DESC";
+
+    try (Connection conn = DatabaseConfig.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            Denuncia d = new Denuncia();
+            d.setDenunciaId(rs.getInt("denuncia_id"));
+            d.setDescricao(rs.getString("descricao"));
+            d.setStatus(rs.getString("status"));
+            d.setVisibilidade(rs.getString("visibilidade"));
+            d.setFoto(rs.getString("foto"));
+            d.setVideo(rs.getString("video"));
+            d.setCategoriaId(rs.getInt("categoria_id"));
+            d.setDataHora(rs.getTimestamp("data_hora").toLocalDateTime());
+            
+            denuncias.add(d);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return denuncias;
+}
 }

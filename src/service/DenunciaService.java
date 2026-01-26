@@ -14,4 +14,8 @@ public class DenunciaService {
     public List<Denuncia> minhasDenuncias(int usuarioMoradorId) {
         return repository.listarPorUsuarioMorador(usuarioMoradorId);
     }
+
+    public List<Denuncia> listarFeed() {
+    return repository.consultarFeedGeral();
+}
 }
