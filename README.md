@@ -17,24 +17,24 @@
 
 ## Funcionalidades Atuais
 
-• Cadastro e Login de Usuários/Moradores;
+- Cadastro e Login de Usuários/Moradores;
 
-• Registro de denúncias;
+- Registro de denúncias;
 
-• Feed Geral de denúncias;
+- Feed Geral de denúncias;
 
 ---
 
-## Equipe
+## Equipe 
 
-•	Alícia Mendes do Nascimento: Scrum Master e Desenvolvedora Back-end;
+-	Alícia Mendes do Nascimento: Scrum Master e Desenvolvedora Back-end;
   https://github.com/Aliciaacilia
 
-•	Darysthon Guimarães Leite Mamede: Product Owner (PO) e Desenvolvedor Back-end; 
+-	Darysthon Guimarães Leite Mamede: Product Owner (PO) e Desenvolvedor Back-end; 
   https://github.com/Darysthon
 
-•	Laryssa Rebeca de Almeida Souza: Desenvolvedora Back-end e Analista de Dados;
+-	Laryssa Rebeca de Almeida Souza: Desenvolvedora Back-end e Analista de Dados;
   https://github.com/Laryssasza
 
-• Gabriel Souza Alves: Designer de Interface (UI/UX) e Desenvolvedor Front-end. 
+- Gabriel Souza Alves: Designer de Interface (UI/UX) e Desenvolvedor Front-end. 
   https://github.com/gabrielsouzaon
