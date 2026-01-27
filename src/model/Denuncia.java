@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Denuncia {
     private int denunciaId;
@@ -13,14 +15,19 @@ public class Denuncia {
     private String video;
     private int categoriaId;      
 
-    public Denuncia() {}
 
-    public Denuncia(int denunciaId, int usuarioMoradorId, String descricao, LocalDateTime dataHora,
+    private List<Comentario> comentarios = new ArrayList<>();
+    private List<Integer> curtidas = new ArrayList<>(); 
+    public Denuncia() {
+        this.dataHora = LocalDateTime.now();
+    }
+
+    public Denuncia(int denunciaId, int usuarioMoradorId, String descricao,
                     String status, String visibilidade, String foto, String video, int categoriaId) {
         this.denunciaId = denunciaId;
         this.usuarioMoradorId = usuarioMoradorId;
         this.descricao = descricao;
-        this.dataHora = dataHora;
+        this.dataHora = LocalDateTime.now();
         this.status = status;
         this.visibilidade = visibilidade;
         this.foto = foto;
@@ -28,7 +35,7 @@ public class Denuncia {
         this.categoriaId = categoriaId;
     }
 
-    public int getDenunciaId() { return denunciaId; }
+        public int getDenunciaId() { return denunciaId; }
     public void setDenunciaId(int denunciaId) { this.denunciaId = denunciaId; }
 
     public int getUsuarioMoradorId() { return usuarioMoradorId; }
@@ -54,4 +61,23 @@ public class Denuncia {
 
     public int getCategoriaId() { return categoriaId; }
     public void setCategoriaId(int categoriaId) { this.categoriaId = categoriaId; }
+
+
+    public void adicionarComentario(Comentario comentario) {
+        comentarios.add(comentario);
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void adicionarCurtida(int usuarioId) {
+        if (!curtidas.contains(usuarioId)) {
+            curtidas.add(usuarioId);
+        }
+    }
+
+    public int getTotalCurtidas() {
+        return curtidas.size();
+    }
 }

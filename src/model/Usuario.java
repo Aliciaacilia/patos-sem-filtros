@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
     protected int id;
     protected String nome;
@@ -8,6 +11,9 @@ public class Usuario {
     protected boolean emailVerificado;
     protected String tipo;
     protected boolean anonimo;
+
+    // Histórico de denúncias
+    private List<Denuncia> denuncias = new ArrayList<>();
 
     public Usuario() {}
 
@@ -20,10 +26,11 @@ public class Usuario {
         this.tipo = tipo;
     }
 
+    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public String getNome() { return nome; }
+    public String getNome() { return anonimo ? "Anônimo" : nome; }
     public void setNome(String nome) { this.nome = nome; }
 
     public String getEmail() { return email; }
@@ -40,4 +47,13 @@ public class Usuario {
 
     public boolean isAnonimo() { return anonimo; }
     public void setAnonimo(boolean anonimo) { this.anonimo = anonimo; }
+
+    // Histórico de denúncias
+    public void adicionarDenuncia(Denuncia denuncia) {
+        denuncias.add(denuncia);
+    }
+
+    public List<Denuncia> getDenuncias() {
+        return denuncias;
+    }
 }
