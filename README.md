@@ -25,6 +25,8 @@
   
 - Histórico de usuário.
 
+- Adicionar curtidas e comentários
+
 ---
 
 ## Equipe 
