@@ -32,4 +32,8 @@ public class DenunciaController {
     public List<Denuncia> listarDenuncias() {
         return service.listarFeed();
     }
+
+        public Denuncia buscarPorId(int id) {
+        return service.buscarPorId(id);
+    }
 }

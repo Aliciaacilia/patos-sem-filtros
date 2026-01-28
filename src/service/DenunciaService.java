@@ -18,4 +18,8 @@ public class DenunciaService {
     public List<Denuncia> listarFeed() {
     return repository.consultarFeedGeral();
     }
+
+    public Denuncia buscarPorId(int id) {
+    return repository.buscarPorId(id);
+}
 }

@@ -83,4 +83,30 @@ public class DenunciaRepository {
     }
     return denuncias;
 }
+        public Denuncia buscarPorId(int id) {
+        String sql = "SELECT * FROM denuncias WHERE denuncia_id = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Denuncia(
+                    rs.getInt("denuncia_id"),
+                    rs.getInt("usuario_morador_id"),
+                    rs.getString("descricao"),
+                    rs.getTimestamp("data_hora").toLocalDateTime(),
+                    rs.getString("status"),
+                    rs.getString("visibilidade"),
+                    rs.getString("foto"),
+                    rs.getString("video"),
+                    rs.getInt("categoria_id")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; 
+        }
 }
