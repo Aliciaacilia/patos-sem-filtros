@@ -22,6 +22,8 @@
 - Registro de denúncias;
 
 - Feed Geral de denúncias;
+  
+- Histórico de usuário.
 
 ---
 
