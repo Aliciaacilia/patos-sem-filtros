@@ -12,7 +12,6 @@ public class Usuario {
     protected String tipo;
     protected boolean anonimo;
 
-    // Histórico de denúncias
     private List<Denuncia> denuncias = new ArrayList<>();
 
     public Usuario() {}
@@ -26,7 +25,6 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -48,7 +46,6 @@ public class Usuario {
     public boolean isAnonimo() { return anonimo; }
     public void setAnonimo(boolean anonimo) { this.anonimo = anonimo; }
 
-    // Histórico de denúncias
     public void adicionarDenuncia(Denuncia denuncia) {
         denuncias.add(denuncia);
     }

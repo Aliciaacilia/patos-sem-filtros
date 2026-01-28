@@ -1,14 +1,14 @@
 package view;
 
-import controller.UsuarioController;
 import java.util.Scanner;
+
+import controller.UsuarioController;
 import model.Usuario;
 
 public class UsuarioView {
-    private UsuarioController controller; // apenas declarado
+    private UsuarioController controller; 
     private Scanner scanner = new Scanner(System.in);
 
-    // Construtor que recebe o controller
     public UsuarioView(UsuarioController controller) {
         this.controller = controller;
     }

@@ -1,8 +1,13 @@
 package repository;
 
-import java.sql.*;
-import model.Usuario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import databaseconfig.DatabaseConfig;
+import model.Usuario;
 
 public class UsuarioRepository {
 
@@ -21,7 +26,6 @@ public class UsuarioRepository {
             }
             stmt.executeUpdate();
 
-            // Recupera o ID gerado
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 usuario.setId(rs.getInt(1));
