@@ -16,17 +16,8 @@ public class DenunciaController {
         System.out.println("Denúncia registrada com sucesso!");
     }
 
-    public void minhasDenuncias(int usuarioMoradorId) {
-        List<Denuncia> denuncias = service.minhasDenuncias(usuarioMoradorId);
-        System.out.println("Histórico de denúncias:");
-        for (Denuncia d : denuncias) {
-            System.out.println("- ID: " + d.getDenunciaId()
-                + " | Descrição: " + d.getDescricao()
-                + " | Status: " + d.getStatus()
-                + " | Visibilidade: " + d.getVisibilidade()
-                + " | Categoria: " + d.getCategoriaId()
-                + " | Data/Hora: " + d.getDataHora());
-        }
+    public List<Denuncia> minhasDenuncias(int usuarioMoradorId) {
+    return service.minhasDenuncias(usuarioMoradorId);
     }
 
     public List<Denuncia> listarDenuncias() {
