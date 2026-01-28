@@ -3,12 +3,12 @@ package repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import model.Comentario;
+import model.Comentário;
 import databaseconfig.DatabaseConfig;
 
 public class ComentarioRepository {
 
-    public void salvar(Comentario comentario) {
+    public void salvar(Comentário comentario) {
         String sql = "INSERT INTO comentarios_denuncia (denuncia_id, usuario_morador_id, comentario, data_hora) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -22,15 +22,15 @@ public class ComentarioRepository {
         }
     }
 
-    public List<Comentario> listarPorDenuncia(int denunciaId) {
-        List<Comentario> comentarios = new ArrayList<>();
+    public List<Comentário> listarPorDenuncia(int denunciaId) {
+        List<Comentário> comentarios = new ArrayList<>();
         String sql = "SELECT * FROM comentarios_denuncia WHERE denuncia_id = ? ORDER BY data_hora DESC";
         try (Connection conn = DatabaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, denunciaId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Comentario c = new Comentario(
+                Comentário c = new Comentário(
                     rs.getInt("comentario_id"),
                     rs.getInt("denuncia_id"),
                     rs.getInt("usuario_morador_id"),

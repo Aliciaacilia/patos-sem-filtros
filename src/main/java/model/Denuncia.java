@@ -15,7 +15,7 @@ public class Denuncia {
     private String video;
     private int categoriaId;      
 
-    private List<Comentario> comentarios = new ArrayList<>();
+    private List<Comentário> comentarios = new ArrayList<>();
     private List<Integer> curtidas = new ArrayList<>(); 
 
     public Denuncia() {
@@ -74,11 +74,11 @@ public class Denuncia {
     public int getCategoriaId() { return categoriaId; }
     public void setCategoriaId(int categoriaId) { this.categoriaId = categoriaId; }
 
-    public void adicionarComentario(Comentario comentario) {
+    public void adicionarComentario(Comentário comentario) {
         comentarios.add(comentario);
     }
 
-    public List<Comentario> getComentarios() {
+    public List<Comentário> getComentarios() {
         return comentarios;
     }
 

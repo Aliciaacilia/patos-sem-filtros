@@ -1,7 +1,8 @@
 package controller;
 
 import java.util.List;
-import model.Comentario;
+
+import model.Comentário;
 import repository.ComentarioRepository;
 
 public class ComentarioController {
@@ -11,12 +12,12 @@ public class ComentarioController {
         this.comentarioRepository = new ComentarioRepository();
     }
 
-    public List<Comentario> listarComentarios(int denunciaId) {
+    public List<Comentário> listarComentarios(int denunciaId) {
         return comentarioRepository.listarPorDenuncia(denunciaId);
     }
 
     public void adicionarComentario(int denunciaId, int usuarioMoradorId, String texto) {
-        Comentario comentario = new Comentario(denunciaId, usuarioMoradorId, texto);
+        Comentário comentario = new Comentário(denunciaId, usuarioMoradorId, texto);
         comentarioRepository.salvar(comentario);
         System.out.println("Comentário salvo: " + texto);
     }

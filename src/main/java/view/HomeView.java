@@ -2,11 +2,12 @@ package view;
 
 import java.util.List;
 import java.util.Scanner;
-import controller.DenunciaController;
+
 import controller.ComentarioController;
 import controller.CurtidaController;
+import controller.DenunciaController;
+import model.Comentário;
 import model.Denuncia;
-import model.Comentario;
 
 public class HomeView {
     private Scanner scanner = new Scanner(System.in);
@@ -141,12 +142,12 @@ public class HomeView {
         System.out.println("Visibilidade: " + d.getVisibilidade());
         System.out.println("Curtidas: " + curtidaController.contarCurtidas(d.getDenunciaId()));
 
-        List<Comentario> comentarios = comentarioController.listarComentarios(denunciaId);
+        List<Comentário> comentarios = comentarioController.listarComentarios(denunciaId);
         if (comentarios.isEmpty()) {
             System.out.println("Nenhum comentário ainda.");
         } else {
             System.out.println("\nComentários:");
-            for (Comentario c : comentarios) {
+            for (Comentário c : comentarios) {
                 System.out.println("- " + c.getComentario() + " (Usuário " + c.getUsuarioMoradorId() + ")");
             }
         }
