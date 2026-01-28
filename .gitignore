@@ -15,4 +15,11 @@ Thumbs.db
 .vscode/
 .idea/
 
+/bin/
+/target/
+*.class
+.settings/
+.classpath
+.project
+
 databaseconfig/DatabaseConfig.java
