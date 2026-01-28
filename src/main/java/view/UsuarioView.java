@@ -7,7 +7,7 @@ import model.Usuario;
 
 public class UsuarioView {
     private UsuarioController controller; 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in, "UTF-8");
 
     public UsuarioView(UsuarioController controller) {
         this.controller = controller;
