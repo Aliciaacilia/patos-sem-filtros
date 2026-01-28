@@ -5,12 +5,12 @@ import databaseconfig.DatabaseConfig;
 
 public class CurtidaRepository {
 
-    public void salvar(int denunciaId, int usuarioId) {
-        String sql = "INSERT INTO curtidas (denuncia_id, usuario_id) VALUES (?, ?)";
+    public void salvar(int denunciaId, int usuarioMoradorId) {
+        String sql = "INSERT INTO curtidas_denuncia (denuncia_id, usuario_morador_id) VALUES (?, ?)";
         try (Connection conn = DatabaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, denunciaId);
-            stmt.setInt(2, usuarioId);
+            stmt.setInt(2, usuarioMoradorId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -18,7 +18,7 @@ public class CurtidaRepository {
     }
 
     public int contarCurtidas(int denunciaId) {
-        String sql = "SELECT COUNT(*) FROM curtidas WHERE denuncia_id = ?";
+        String sql = "SELECT COUNT(*) FROM curtidas_denuncia WHERE denuncia_id = ?";
         try (Connection conn = DatabaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, denunciaId);
@@ -32,12 +32,12 @@ public class CurtidaRepository {
         return 0;
     }
 
-    public boolean usuarioCurtiu(int denunciaId, int usuarioId) {
-        String sql = "SELECT 1 FROM curtidas WHERE denuncia_id = ? AND usuario_id = ?";
+    public boolean usuarioCurtiu(int denunciaId, int usuarioMoradorId) {
+        String sql = "SELECT 1 FROM curtidas_denuncia WHERE denuncia_id = ? AND usuario_morador_id = ?";
         try (Connection conn = DatabaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, denunciaId);
-            stmt.setInt(2, usuarioId);
+            stmt.setInt(2, usuarioMoradorId);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {

@@ -1,18 +1,28 @@
 package model;
 
-public class Curtida {
-    private int id;
-    private int denunciaId;
-    private int usuarioId;
+import java.time.LocalDateTime;
 
-    public Curtida(int id, int denunciaId, int usuarioId) {
-        this.id = id;
+public class Curtida {
+    private int curtidaId;
+    private int denunciaId;
+    private int usuarioMoradorId;
+    private LocalDateTime dataHora;
+
+    public Curtida(int curtidaId, int denunciaId, int usuarioMoradorId, LocalDateTime dataHora) {
+        this.curtidaId = curtidaId;
         this.denunciaId = denunciaId;
-        this.usuarioId = usuarioId;
+        this.usuarioMoradorId = usuarioMoradorId;
+        this.dataHora = dataHora;
     }
 
-    // Getters
-    public int getId() { return id; }
+    public Curtida(int denunciaId, int usuarioMoradorId) {
+        this.denunciaId = denunciaId;
+        this.usuarioMoradorId = usuarioMoradorId;
+        this.dataHora = LocalDateTime.now();
+    }
+
+    public int getCurtidaId() { return curtidaId; }
     public int getDenunciaId() { return denunciaId; }
-    public int getUsuarioId() { return usuarioId; }
+    public int getUsuarioMoradorId() { return usuarioMoradorId; }
+    public LocalDateTime getDataHora() { return dataHora; }
 }

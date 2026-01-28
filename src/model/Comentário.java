@@ -3,24 +3,30 @@ package model;
 import java.time.LocalDateTime;
 
 public class Comentario {
-    private int id;
+    private int comentarioId;
     private int denunciaId;
-    private int usuarioId;
-    private String texto;
-    private LocalDateTime data;
+    private int usuarioMoradorId;
+    private String comentario;
+    private LocalDateTime dataHora;
 
-    public Comentario(int id, int denunciaId, int usuarioId, String texto) {
-        this.id = id;
+    public Comentario(int comentarioId, int denunciaId, int usuarioMoradorId, String comentario, LocalDateTime dataHora) {
+        this.comentarioId = comentarioId;
         this.denunciaId = denunciaId;
-        this.usuarioId = usuarioId;
-        this.texto = texto;
-        this.data = LocalDateTime.now();
+        this.usuarioMoradorId = usuarioMoradorId;
+        this.comentario = comentario;
+        this.dataHora = dataHora;
     }
 
-    // Getters
-    public int getId() { return id; }
+    public Comentario(int denunciaId, int usuarioMoradorId, String comentario) {
+        this.denunciaId = denunciaId;
+        this.usuarioMoradorId = usuarioMoradorId;
+        this.comentario = comentario;
+        this.dataHora = LocalDateTime.now();
+    }
+
+    public int getComentarioId() { return comentarioId; }
     public int getDenunciaId() { return denunciaId; }
-    public int getUsuarioId() { return usuarioId; }
-    public String getTexto() { return texto; }
-    public LocalDateTime getData() { return data; }
+    public int getUsuarioMoradorId() { return usuarioMoradorId; }
+    public String getComentario() { return comentario; }
+    public LocalDateTime getDataHora() { return dataHora; }
 }

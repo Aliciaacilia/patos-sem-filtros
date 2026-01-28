@@ -10,21 +10,30 @@ public class DenunciaController {
 
     public void registrarDenuncia(int usuarioMoradorId, String descricao, String status,
                                   String visibilidade, String foto, String video, int categoriaId) {
-        Denuncia denuncia = new Denuncia(0, usuarioMoradorId, descricao, LocalDateTime.now(),
-                                         status, visibilidade, foto, video, categoriaId);
+        Denuncia denuncia = new Denuncia(
+            0, 
+            usuarioMoradorId,
+            descricao,
+            LocalDateTime.now(),
+            status,
+            visibilidade,
+            foto,
+            video,
+            categoriaId
+        );
         service.registrarDenuncia(denuncia);
         System.out.println("Denúncia registrada com sucesso!");
     }
 
     public List<Denuncia> minhasDenuncias(int usuarioMoradorId) {
-    return service.minhasDenuncias(usuarioMoradorId);
+        return service.minhasDenuncias(usuarioMoradorId);
     }
 
     public List<Denuncia> listarDenuncias() {
         return service.listarFeed();
     }
 
-        public Denuncia buscarPorId(int id) {
+    public Denuncia buscarPorId(int id) {
         return service.buscarPorId(id);
     }
 }

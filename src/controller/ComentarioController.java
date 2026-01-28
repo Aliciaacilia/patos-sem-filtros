@@ -1,14 +1,23 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import model.Comentário;
+import model.Comentario;
+import repository.ComentarioRepository;
 
 public class ComentarioController {
-    public List<Comentário> listarComentarios(int denunciaId) {
-        return new ArrayList<>(); 
+    private ComentarioRepository comentarioRepository;
+
+    public ComentarioController() {
+        this.comentarioRepository = new ComentarioRepository();
     }
-    public void adicionarComentario(int denunciaId, int usuarioId, String texto) {
-        System.out.println("Comentário: " + texto);
+
+    public List<Comentario> listarComentarios(int denunciaId) {
+        return comentarioRepository.listarPorDenuncia(denunciaId);
+    }
+
+    public void adicionarComentario(int denunciaId, int usuarioMoradorId, String texto) {
+        Comentario comentario = new Comentario(denunciaId, usuarioMoradorId, texto);
+        comentarioRepository.salvar(comentario);
+        System.out.println("Comentário salvo: " + texto);
     }
 }

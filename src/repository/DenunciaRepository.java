@@ -9,25 +9,25 @@ import databaseconfig.DatabaseConfig;
 public class DenunciaRepository {
 
     public void salvar(Denuncia denuncia) {
-    String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id) " +
-                 "VALUES ((SELECT usuario_morador_id FROM usuarios_moradores WHERE usuario_id = ?), ?, ?, ?, ?, ?, ?)";
-    
-    try (Connection conn = DatabaseConfig.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-        
-        stmt.setInt(1, denuncia.getUsuarioMoradorId());
-        stmt.setString(2, denuncia.getDescricao());
-        stmt.setString(3, denuncia.getStatus());
-        stmt.setString(4, denuncia.getVisibilidade());
-        stmt.setString(5, denuncia.getFoto());
-        stmt.setString(6, denuncia.getVideo());
-        stmt.setInt(7, denuncia.getCategoriaId()); 
-        
-        stmt.executeUpdate();
-    } catch (SQLException e) {
-        e.printStackTrace();
+        String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, denuncia.getUsuarioMoradorId());
+            stmt.setString(2, denuncia.getDescricao());
+            stmt.setString(3, denuncia.getStatus());
+            stmt.setString(4, denuncia.getVisibilidade());
+            stmt.setString(5, denuncia.getFoto());
+            stmt.setString(6, denuncia.getVideo());
+            stmt.setInt(7, denuncia.getCategoriaId());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-}
 
     public List<Denuncia> listarPorUsuarioMorador(int usuarioMoradorId) {
         List<Denuncia> resultado = new ArrayList<>();
@@ -57,37 +57,38 @@ public class DenunciaRepository {
     }
 
     public List<Denuncia> consultarFeedGeral() {
-    List<Denuncia> denuncias = new ArrayList<>();
+        List<Denuncia> denuncias = new ArrayList<>();
+        String sql = "SELECT * FROM denuncias ORDER BY data_hora DESC";
 
-    String sql = "SELECT * FROM denuncias ORDER BY data_hora DESC";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-    try (Connection conn = DatabaseConfig.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql);
-         ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Denuncia d = new Denuncia();
+                d.setDenunciaId(rs.getInt("denuncia_id"));
+                d.setUsuarioMoradorId(rs.getInt("usuario_morador_id"));
+                d.setDescricao(rs.getString("descricao"));
+                d.setStatus(rs.getString("status"));
+                d.setVisibilidade(rs.getString("visibilidade"));
+                d.setFoto(rs.getString("foto"));
+                d.setVideo(rs.getString("video"));
+                d.setCategoriaId(rs.getInt("categoria_id"));
+                d.setDataHora(rs.getTimestamp("data_hora").toLocalDateTime());
 
-        while (rs.next()) {
-            Denuncia d = new Denuncia();
-            d.setDenunciaId(rs.getInt("denuncia_id"));
-            d.setDescricao(rs.getString("descricao"));
-            d.setStatus(rs.getString("status"));
-            d.setVisibilidade(rs.getString("visibilidade"));
-            d.setFoto(rs.getString("foto"));
-            d.setVideo(rs.getString("video"));
-            d.setCategoriaId(rs.getInt("categoria_id"));
-            d.setDataHora(rs.getTimestamp("data_hora").toLocalDateTime());
-            
-            denuncias.add(d);
+                denuncias.add(d);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return denuncias;
     }
-    return denuncias;
-}
-        public Denuncia buscarPorId(int id) {
+
+    public Denuncia buscarPorId(int id) {
         String sql = "SELECT * FROM denuncias WHERE denuncia_id = ?";
         try (Connection conn = DatabaseConfig.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
@@ -107,6 +108,6 @@ public class DenunciaRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; 
-        }
+        return null;
+    }
 }
