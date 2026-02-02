@@ -179,7 +179,7 @@ public class HomeView {
         } else {
             System.out.println("\nComentários:");
             for (Comentário c : comentarios) {
-                System.out.println("- " + c.getComentario() + " (Usuário " + c.getUsuarioMoradorId() + ")");
+                System.out.println("- " + c.getComentario() + " (Usuário " + c.getNomeAutor() + ")");
             }
         }
 
