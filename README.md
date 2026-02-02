@@ -7,8 +7,7 @@
 ## Tecnologias Utilizadas
 
 - Java; 
-- JavaScript; 
-- Node.js;  
+- JavaScript;  
 - PostgreSQL;  
 - Git & GitHub;
 - HTML5 e CSS.
