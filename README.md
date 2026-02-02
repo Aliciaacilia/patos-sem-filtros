@@ -27,6 +27,8 @@
 
 - Adicionar curtidas e comentários
 
+- Perfil de usuário
+
 ---
 
 ## Equipe 
