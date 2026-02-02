@@ -111,4 +111,32 @@ public class DenunciaController {
             rs.getInt("categoria_id")
         );
     }
+
+    public List<Denuncia> listarDenunciasComFiltro(String status, int categoriaId) {
+    List<Denuncia> denuncias = new ArrayList<>();
+    
+    String sql = "SELECT * FROM denuncias WHERE " +
+                 "(? = '' OR status = ?) AND " +
+                 "(? = 0 OR categoria_id = ?) " +
+                 "ORDER BY data_hora DESC";
+
+    try (Connection conn = DatabaseConfig.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, status);   
+        stmt.setString(2, status);  
+        
+        stmt.setInt(3, categoriaId); 
+        stmt.setInt(4, categoriaId); 
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                denuncias.add(extrairDenuncia(rs));
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return denuncias;
+}
 }
