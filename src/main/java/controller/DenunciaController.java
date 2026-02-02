@@ -11,11 +11,15 @@ import java.util.List;
 
 import databaseconfig.DatabaseConfig;
 import model.Denuncia;
+import model.Comentário;
 
 public class DenunciaController {
 
-    public DenunciaController() {
+    // Adicionamos os outros controllers para complementar os dados do objeto Denuncia
+    private ComentarioController comentarioController = new ComentarioController();
+    private CurtidaController curtidaController = new CurtidaController();
 
+    public DenunciaController() {
     }
 
     public void registrarDenuncia(int usuarioMoradorId, String descricao, String status,
@@ -98,9 +102,15 @@ public class DenunciaController {
         return null;
     }
 
+    /**
+     * MÉTODO CORRIGIDO: Agora ele busca os comentários no banco 
+     * e os adiciona ao objeto Denuncia antes de retorná-lo.
+     */
     private Denuncia extrairDenuncia(ResultSet rs) throws SQLException {
-        return new Denuncia(
-            rs.getInt("denuncia_id"),
+        int denunciaId = rs.getInt("denuncia_id");
+
+        Denuncia d = new Denuncia(
+            denunciaId,
             rs.getInt("usuario_morador_id"),
             rs.getString("descricao"),
             rs.getTimestamp("data_hora").toLocalDateTime(),
@@ -110,33 +120,41 @@ public class DenunciaController {
             rs.getString("video"),
             rs.getInt("categoria_id")
         );
+
+        // BUSCA OS COMENTÁRIOS VINCULADOS E ADICIONA NA LISTA DO MODELO
+        List<Comentário> listaComentarios = comentarioController.listarComentarios(denunciaId);
+        for (Comentário c : listaComentarios) {
+            d.adicionarComentario(c);
+        }
+
+        return d;
     }
 
     public List<Denuncia> listarDenunciasComFiltro(String status, int categoriaId) {
-    List<Denuncia> denuncias = new ArrayList<>();
-    
-    String sql = "SELECT * FROM denuncias WHERE " +
-                 "(? = '' OR status = ?) AND " +
-                 "(? = 0 OR categoria_id = ?) " +
-                 "ORDER BY data_hora DESC";
-
-    try (Connection conn = DatabaseConfig.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-        stmt.setString(1, status);   
-        stmt.setString(2, status);  
+        List<Denuncia> denuncias = new ArrayList<>();
         
-        stmt.setInt(3, categoriaId); 
-        stmt.setInt(4, categoriaId); 
+        String sql = "SELECT * FROM denuncias WHERE " +
+                     "(? = '' OR status = ?) AND " +
+                     "(? = 0 OR categoria_id = ?) " +
+                     "ORDER BY data_hora DESC";
 
-        try (ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                denuncias.add(extrairDenuncia(rs));
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, status);   
+            stmt.setString(2, status);  
+            
+            stmt.setInt(3, categoriaId); 
+            stmt.setInt(4, categoriaId); 
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    denuncias.add(extrairDenuncia(rs));
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return denuncias;
     }
-    return denuncias;
-}
 }
