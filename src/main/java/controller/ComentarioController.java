@@ -18,9 +18,9 @@ public class ComentarioController {
 
     public List<Comentário> listarComentarios(int denunciaId) {
     List<Comentário> comentarios = new ArrayList<>();
-    
-    String sql = "SELECT c.*, m.nome_usuario FROM comentarios_denuncia c " +
-                 "JOIN moradores m ON c.usuario_morador_id = m.usuario_morador_id " +
+
+    String sql = "SELECT c.*, m.nome_perfil FROM comentarios_denuncia c " +
+                 "JOIN usuarios_moradores m ON c.usuario_morador_id = m.usuario_morador_id " +
                  "WHERE c.denuncia_id = ? ORDER BY c.data_hora DESC";
     
     try (Connection conn = DatabaseConfig.getConnection();

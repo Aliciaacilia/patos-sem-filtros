@@ -160,6 +160,8 @@ public class HomeView {
     }
 
     private void verDetalhesDenuncia(int denunciaId) {
+        boolean continuarNaDenuncia = true;
+
         Denuncia d = denunciaController.buscarPorId(denunciaId);
         if (d == null) {
             System.out.println("Denúncia não encontrada.");
@@ -201,7 +203,8 @@ public class HomeView {
                 System.out.println("Comentário adicionado!");
                 break;
             default:
-                break;
+                continuarNaDenuncia = false; 
+                break;    
         }
     }
 }
