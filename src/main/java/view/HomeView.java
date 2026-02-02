@@ -61,11 +61,15 @@ public class HomeView {
     }
 
     private void exibirFeed() {
-        System.out.println("\n--- Feed de denúncias ---");
         List<Denuncia> lista = denunciaController.listarDenuncias();
+        menuFeed(lista);
+    }
+
+    private void menuFeed(List<Denuncia> lista) {
+       System.out.println("\n--- Feed de denúncias ---");
 
         if (lista.isEmpty()) {
-            System.out.println("Nenhuma denúncia registrada ainda.");
+            System.out.println("Nenhuma denúncia encontrada.");
         } else {
             for (Denuncia d : lista) {
                 System.out.println("----------------------------------");
@@ -73,17 +77,44 @@ public class HomeView {
                 System.out.println("Descrição: " + d.getDescricao());
                 System.out.println("Status: [" + d.getStatus() + "]");
                 System.out.println("Categoria: " + d.getCategoriaId());
-                System.out.println("Postado em: " + d.getDataHora());
                 System.out.println("Curtidas: " + curtidaController.contarCurtidas(d.getDenunciaId()));
             }
+        }
 
-            System.out.print("\nDigite o ID da denúncia para ver detalhes ou ENTER para voltar: ");
-            String entrada = scanner.nextLine();
-            if (!entrada.isEmpty()) {
+        System.out.println("\nOpções: [ID para detalhes] | [F para Filtrar] | [ENTER para voltar]");
+        System.out.print("Escolha: ");
+        String entrada = scanner.nextLine().toUpperCase();
+
+        if (entrada.equals("F")) {
+            abrirFiltrosNoFeed();
+        } else if (!entrada.isEmpty()) {
+            try {
                 int denunciaId = Integer.parseInt(entrada);
                 verDetalhesDenuncia(denunciaId);
+            } catch (NumberFormatException e) {
+                System.out.println("Opção inválida.");
             }
         }
+    }
+    
+    private void abrirFiltrosNoFeed() {
+        System.out.println("\n--- Filtros de denúncias ---");
+        System.out.println("Status: 1 - pendente | 2 - em andamento | 3 - resolvido | 0 - todos");
+        System.out.print("Escolha: ");
+        int opStatus = Integer.parseInt(scanner.nextLine());
+        
+        String statusTexto = switch (opStatus) {
+            case 1 -> "pendente";
+            case 2 -> "em andamento";
+            case 3 -> "resolvido";
+            default -> "";
+        };
+
+        System.out.print("ID da categoria (0 para todas): ");
+        int catId = Integer.parseInt(scanner.nextLine());
+
+        List<Denuncia> filtradas = denunciaController.listarDenunciasComFiltro(statusTexto, catId);
+        menuFeed(filtradas); 
     }
 
     private void criarDenuncia() {
