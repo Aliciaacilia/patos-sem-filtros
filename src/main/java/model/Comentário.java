@@ -8,6 +8,7 @@ public class Comentário {
     private int usuarioMoradorId;
     private String comentario;
     private LocalDateTime dataHora;
+    private String nomeAutor;
 
     public Comentário(int comentarioId, int denunciaId, int usuarioMoradorId, String comentario, LocalDateTime dataHora) {
         this.comentarioId = comentarioId;
@@ -29,4 +30,6 @@ public class Comentário {
     public int getUsuarioMoradorId() { return usuarioMoradorId; }
     public String getComentario() { return comentario; }
     public LocalDateTime getDataHora() { return dataHora; }
+    public String getNomeAutor() { return nomeAutor; }
+    public void setNomeAutor(String nomeAutor) { this.nomeAutor = nomeAutor; }
 }
