@@ -10,14 +10,14 @@ import model.Comentário;
 import model.Denuncia;
 
 public class HomeView {
-    private Scanner scanner = new Scanner(System.in);
+
+    private Scanner scanner = new Scanner(System.in, "UTF-8");
     private int usuarioMoradorId;
     private String nomeUsuario;
     private DenunciaController denunciaController = new DenunciaController();
     private ComentarioController comentarioController = new ComentarioController();
     private CurtidaController curtidaController = new CurtidaController();
 
-    // Construtor recebe o ID e nome do usuário logado
     public HomeView(int usuarioMoradorId, String nomeUsuario) {
         this.usuarioMoradorId = usuarioMoradorId;
         this.nomeUsuario = nomeUsuario;
