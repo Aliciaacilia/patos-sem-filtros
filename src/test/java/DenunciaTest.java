@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import model.Denuncia;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DenunciaTest {
 
@@ -23,4 +25,26 @@ public class DenunciaTest {
         
         assertEquals("Nao resolvido", d.getStatus());
     }
+
+    @Test
+    void testListarDenunciasModelo() {
+        List<Denuncia> lista = new ArrayList<>();
+
+        Denuncia d1 = new Denuncia(1, 10, "Buraco na rua",
+                LocalDateTime.now(), "Pendente", "Publico", null, null, 3);
+
+        Denuncia d2 = new Denuncia(2, 11, "Lixo acumulado",
+                LocalDateTime.now(), "Resolvido", "Publico", null, null, 1);
+
+        lista.add(d1);
+        lista.add(d2);
+
+        assertEquals(2, lista.size());
+        assertEquals("Buraco na rua", lista.get(0).getDescricao());
+        assertEquals("Lixo acumulado", lista.get(1).getDescricao());
+        assertEquals("Pendente", lista.get(0).getStatus());
+        assertEquals("Resolvido", lista.get(1).getStatus());
+    }
+
+
 }
