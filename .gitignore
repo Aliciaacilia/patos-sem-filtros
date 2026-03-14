@@ -4,22 +4,25 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Env
+# Env e Configurações Sensíveis
 .env
+databaseconfig/DatabaseConfig.java
 
 # Sistema
 .DS_Store
 Thumbs.db
 
-# Editor
+# Editor e IDEs
 .vscode/
 .idea/
-
-/bin/
-/target/
-*.class
 .settings/
 .classpath
 .project
 
-databaseconfig/DatabaseConfig.java
+# Java e Maven
+/bin/
+/target/
+*.class
+*.jar
+*.war
+*.ear
