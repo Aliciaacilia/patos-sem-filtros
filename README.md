@@ -10,7 +10,8 @@
 - JavaScript;  
 - PostgreSQL;  
 - Git & GitHub;
-- HTML5 e CSS.
+- HTML5 e CSS;
+- JUnit.
 
 ---
 
