@@ -11,7 +11,7 @@ public class ConexaoBancoTest {
     void testarConexaoComPostgreSQL() {
         String url = "jdbc:postgresql://localhost:5432/patos_sem_filtros?charSet=UTF-8";
         String usuario = "postgres";
-        String senha = "alicia06";
+        String senha = "SUA_SENHA_AQUI";
 
         try (Connection conexao = DriverManager.getConnection(url, usuario, senha)) {
             assertNotNull(conexao, "A conexão não deveria ser nula!");
