@@ -6,35 +6,31 @@ public class LoginTest {
 
     @Test
     void testLoginSucesso() {
-
         String senhaCadastrada = String.valueOf("alicia123".hashCode());
         Usuario user = new Usuario(1, "Alicia", "alicia@email.com", senhaCadastrada, true, "MORADOR");
-        String tentativaSenha = "alicia123";
+        
+        String tentativaHash = String.valueOf("alicia123".hashCode());
 
-        String senhaDigitadaHash = String.valueOf(tentativaSenha.hashCode());
-
-        assertEquals(user.getSenha(), senhaDigitadaHash, "O login deve ser bem-sucedido.");
+        assertEquals(user.getSenha(), tentativaHash);
     }
 
     @Test
     void testLoginSenhaIncorreta() {
- 
         String senhaCadastrada = String.valueOf("alicia123".hashCode());
         Usuario user = new Usuario(1, "Alicia", "alicia@email.com", senhaCadastrada, true, "MORADOR");
-        String tentativaErrada = "senhaErrada";
-        String senhaErradaHash = String.valueOf(tentativaErrada.hashCode());
+        
+        String tentativaErradaHash = String.valueOf("senhaErrada".hashCode());
 
-        assertNotEquals(user.getSenha(), senhaErradaHash, "O login não deve permitir senha incorreta.");
+        assertNotEquals(user.getSenha(), tentativaErradaHash);
     }
 
     @Test
     void testLoginDadosVazios() {
-
         String senhaCadastrada = String.valueOf("alicia123".hashCode());
         Usuario user = new Usuario(1, "Alicia", "alicia@email.com", senhaCadastrada, true, "MORADOR");
 
-        String senhaVaziaHash = String.valueOf("".hashCode());
+        String tentativaVaziaHash = String.valueOf("".hashCode());
 
-        assertNotEquals(user.getSenha(), senhaVaziaHash, "O sistema deve rejeitar campos vazios.");
+        assertNotEquals(user.getSenha(), tentativaVaziaHash);
     }
 }
