@@ -6,7 +6,7 @@ import java.util.Scanner;
 import controller.ComentarioController;
 import controller.CurtidaController;
 import controller.DenunciaController;
-import model.Comentário;
+import model.Comentario;
 import model.Denuncia;
 
 public class HomeView {
@@ -175,12 +175,12 @@ public class HomeView {
         System.out.println("Visibilidade: " + d.getVisibilidade());
         System.out.println("Curtidas: " + curtidaController.contarCurtidas(d.getDenunciaId()));
 
-        List<Comentário> comentarios = comentarioController.listarComentarios(denunciaId);
+        List<Comentario> comentarios = comentarioController.listarComentarios(denunciaId);
         if (comentarios.isEmpty()) {
             System.out.println("Nenhum comentário ainda.");
         } else {
             System.out.println("\nComentários:");
-            for (Comentário c : comentarios) {
+            for (Comentario c : comentarios) {
                 System.out.println("- " + c.getComentario() + " (Usuário " + c.getNomeAutor() + ")");
             }
         }

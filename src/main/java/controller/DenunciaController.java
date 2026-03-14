@@ -11,7 +11,8 @@ import java.util.List;
 
 import databaseconfig.DatabaseConfig;
 import model.Denuncia;
-import model.Comentário;
+import model.Comentario;
+import model.Comentario;
 
 public class DenunciaController {
 
@@ -122,8 +123,8 @@ public class DenunciaController {
         );
 
         // BUSCA OS COMENTÁRIOS VINCULADOS E ADICIONA NA LISTA DO MODELO
-        List<Comentário> listaComentarios = comentarioController.listarComentarios(denunciaId);
-        for (Comentário c : listaComentarios) {
+        List<Comentario> listaComentarios = comentarioController.listarComentarios(denunciaId);
+        for (Comentario c : listaComentarios) {
             d.adicionarComentario(c);
         }
 

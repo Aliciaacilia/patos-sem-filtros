@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import databaseconfig.DatabaseConfig;
-import model.Comentário;
+import model.Comentario;
 
 public class ComentarioController {
 
     public ComentarioController() {
     }
 
-    public List<Comentário> listarComentarios(int denunciaId) {
-    List<Comentário> comentarios = new ArrayList<>();
+    public List<Comentario> listarComentarios(int denunciaId) {
+    List<Comentario> comentarios = new ArrayList<>();
 
     String sql = "SELECT c.*, m.nome_perfil FROM comentarios_denuncia c " +
                  "JOIN usuarios_moradores m ON c.usuario_morador_id = m.usuario_morador_id " +
@@ -30,7 +30,7 @@ public class ComentarioController {
         ResultSet rs = stmt.executeQuery();
         
         while (rs.next()) {
-            Comentário c = new Comentário(
+            Comentario c = new Comentario(
                 rs.getInt("comentario_id"),
                 rs.getInt("denuncia_id"),
                 rs.getInt("usuario_morador_id"),
@@ -49,7 +49,7 @@ public class ComentarioController {
 
     public void adicionarComentario(int denunciaId, int usuarioMoradorId, String texto) {
 
-        Comentário comentario = new Comentário(denunciaId, usuarioMoradorId, texto);
+        Comentario comentario = new Comentario(denunciaId, usuarioMoradorId, texto);
         
         String sql = "INSERT INTO comentarios_denuncia (denuncia_id, usuario_morador_id, comentario, data_hora) VALUES (?, ?, ?, ?)";
         

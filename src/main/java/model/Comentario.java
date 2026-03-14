@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Comentário {
+public class Comentario {
     private int comentarioId;
     private int denunciaId;
     private int usuarioMoradorId;
@@ -10,7 +10,7 @@ public class Comentário {
     private LocalDateTime dataHora;
     private String nomeAutor;
 
-    public Comentário(int comentarioId, int denunciaId, int usuarioMoradorId, String comentario, LocalDateTime dataHora) {
+    public Comentario(int comentarioId, int denunciaId, int usuarioMoradorId, String comentario, LocalDateTime dataHora) {
         this.comentarioId = comentarioId;
         this.denunciaId = denunciaId;
         this.usuarioMoradorId = usuarioMoradorId;
@@ -18,7 +18,7 @@ public class Comentário {
         this.dataHora = dataHora;
     }
 
-    public Comentário(int denunciaId, int usuarioMoradorId, String comentario) {
+    public Comentario(int denunciaId, int usuarioMoradorId, String comentario) {
         this.denunciaId = denunciaId;
         this.usuarioMoradorId = usuarioMoradorId;
         this.comentario = comentario;
