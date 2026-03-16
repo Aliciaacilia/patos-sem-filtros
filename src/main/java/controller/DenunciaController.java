@@ -1,5 +1,9 @@
 package controller;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +13,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import databaseconfig.DatabaseConfig;
 import model.Denuncia;
-import model.Comentario;
 import model.Comentario;
 
 public class DenunciaController {
@@ -23,9 +29,31 @@ public class DenunciaController {
     public DenunciaController() {
     }
 
+    private String buscarEnderecoPeloGps(double lat, double lon) {
+        try {
+            String url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + lon;
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("User-Agent", "PatosSemFiltros")
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
+            
+            return json.get("display_name").getAsString();
+        } catch (Exception e) {
+            return "Localização não disponível";
+        }
+    }
+
     public void registrarDenuncia(int usuarioMoradorId, String descricao, String status,
-                                  String visibilidade, String foto, String video, int categoriaId) {
+                                  String visibilidade, String foto, String video, int categoriaId,
+                                  double lat, double lon) {
         
+        String enderecoReal = buscarEnderecoPeloGps(lat, lon);
+        String descricaoFinal = descricao + "\n\n Local: " + enderecoReal;
+
         String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id, data_hora) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -33,7 +61,7 @@ public class DenunciaController {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, usuarioMoradorId);
-            stmt.setString(2, descricao);
+            stmt.setString(2, descricaoFinal);
             stmt.setString(3, status);
             stmt.setString(4, visibilidade);
             stmt.setString(5, foto);
@@ -42,10 +70,8 @@ public class DenunciaController {
             stmt.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 
             stmt.executeUpdate();
-            System.out.println("Denúncia registrada com sucesso no sistema!");
             
         } catch (SQLException e) {
-            System.err.println("Erro ao salvar denúncia.");
             e.printStackTrace();
         }
     }
