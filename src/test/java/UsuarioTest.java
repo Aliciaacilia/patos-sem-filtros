@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import controller.UsuarioController;
 import model.Usuario;
 import model.UsuarioMorador;
 import model.UsuarioModerador;
@@ -29,5 +31,17 @@ public class UsuarioTest {
         Usuario user = new UsuarioMorador();
         user.setEmailVerificado(true);
         assertTrue(user.isEmailVerificado());
+    }
+
+    @Test
+    void testImpedirEmailDuplicado() {
+
+        UsuarioController controller = new UsuarioController();
+    
+        controller.cadastrar("Mariana", "Mari123@email.com", "123", "Morador");
+    
+        boolean resultado = controller.cadastrar("Maria", "Mari123@email.com", "456", "Morador");
+    
+        assertFalse(resultado, "O sistema permitiu cadastrar um e-mail que ja existia");
     }
 }

@@ -16,10 +16,10 @@ public class UsuarioController {
     public UsuarioController() {
     }
 
-    public void cadastrar(String nome, String email, String senha, String tipo) {
+    public boolean cadastrar(String nome, String email, String senha, String tipo) {
         if (buscarPorEmail(email) != null) {
             System.out.println("Erro: Email já cadastrado.");
-            return;
+            return false;
         }
 
         Usuario usuario;
@@ -64,10 +64,12 @@ public class UsuarioController {
             }
 
             System.out.println("Usuário cadastrado com sucesso!");
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Erro técnico ao cadastrar usuário.");
+            return false;
         }
     }
 
