@@ -132,7 +132,14 @@ public class HomeView {
         System.out.print("ID da categoria: ");
         int categoriaId = Integer.parseInt(scanner.nextLine());
 
-        denunciaController.registrarDenuncia(usuarioMoradorId, descricao, status, visibilidade, foto, video, categoriaId);
+        double[] coords = Util.GpsAutomotico.capturarCoordenadas();
+        
+        denunciaController.registrarDenuncia(
+            usuarioMoradorId, descricao, status, visibilidade, 
+            foto, video, categoriaId, coords[0], coords[1]
+        );
+        
+        System.out.println("Denuncia salva com sucesso!");
     }
 
     private void verHistorico() {
