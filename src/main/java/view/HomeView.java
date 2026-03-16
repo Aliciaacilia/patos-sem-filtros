@@ -155,13 +155,13 @@ public class HomeView {
         List<Denuncia> minhas = denunciaController.minhasDenuncias(usuarioMoradorId);
 
         if (minhas.isEmpty()) {
-            System.out.println("Voce ainda não fez nenhuma denuncia.");
+            System.out.println("Voce ainda nao fez nenhuma denuncia.");
         } else {
             for (Denuncia d : minhas) {
                 System.out.println("----------------------------------");
                 System.out.println("ID: " + d.getDenunciaId());
                 System.out.println("Descricao: " + d.getDescricao());
-                System.out.println("Status: [" + d.getStatus() + "]");
+                System.out.println("Status: " + d.getStatus() + "");
                 System.out.println("Categoria: " + d.getCategoriaId());
                 System.out.println("Postado em: " + d.getDataHora());
             }

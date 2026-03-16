@@ -52,7 +52,7 @@ public class DenunciaController {
                 
                 return String.format("%s, %s, %s - %s", rua, bairro, cidade, estado);
             } else {
-                return "Endereco não encontrado para o CEP informado.";
+                return "Endereco nao encontrado para o CEP informado.";
             }
         } catch (Exception e) {
             return "Erro ao processar localizacao.";
@@ -64,7 +64,7 @@ public class DenunciaController {
                                   double lat, double lon, String cep) {
         
         String enderecoReal = buscarEnderecoPeloCep(cep);
-        String descricaoFinal = descricao + "\n\n Local: " + enderecoReal;
+        String descricaoFinal = descricao + "\n\nLocal: " + enderecoReal;
 
         String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id, data_hora) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
