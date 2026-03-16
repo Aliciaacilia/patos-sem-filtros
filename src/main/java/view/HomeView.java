@@ -27,13 +27,13 @@ public class HomeView {
         boolean logado = true;
 
         while (logado) {
-            System.out.println("\n--- Usuário: " + nomeUsuario.toUpperCase() + " ---");
-            System.out.println("1. Feed de denúncias");
-            System.out.println("2. Enviar nova denúncia");
-            System.out.println("3. Minhas denúncias");
+            System.out.println("\n--- Usuario: " + nomeUsuario.toUpperCase() + " ---");
+            System.out.println("1. Feed de denuncias");
+            System.out.println("2. Enviar nova denuncia");
+            System.out.println("3. Minhas denuncias");
             System.out.println("4. Meu perfil");
             System.out.println("5. Logout");
-            System.out.print("Opção: ");
+            System.out.print("Opcao: ");
 
             String escolha = scanner.nextLine();
 
@@ -55,7 +55,7 @@ public class HomeView {
                     logado = false;
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opcao invalida.");
             }
         }
     }
@@ -66,22 +66,22 @@ public class HomeView {
     }
 
     private void menuFeed(List<Denuncia> lista) {
-       System.out.println("\n--- Feed de denúncias ---");
+       System.out.println("\n--- Feed de denuncias ---");
 
         if (lista.isEmpty()) {
-            System.out.println("Nenhuma denúncia encontrada.");
+            System.out.println("Nenhuma denuncia encontrada.");
         } else {
             for (Denuncia d : lista) {
                 System.out.println("----------------------------------");
                 System.out.println("ID: " + d.getDenunciaId());
-                System.out.println("Descrição: " + d.getDescricao());
+                System.out.println("Descricao: " + d.getDescricao());
                 System.out.println("Status: [" + d.getStatus() + "]");
                 System.out.println("Categoria: " + d.getCategoriaId());
                 System.out.println("Curtidas: " + curtidaController.contarCurtidas(d.getDenunciaId()));
             }
         }
 
-        System.out.println("\nOpções: [ID para detalhes] | [F para Filtrar] | [ENTER para voltar]");
+        System.out.println("\nOpcoes: [ID para detalhes] | [F para Filtrar] | [ENTER para voltar]");
         System.out.print("Escolha: ");
         String entrada = scanner.nextLine().toUpperCase();
 
@@ -92,13 +92,13 @@ public class HomeView {
                 int denunciaId = Integer.parseInt(entrada);
                 verDetalhesDenuncia(denunciaId);
             } catch (NumberFormatException e) {
-                System.out.println("Opção inválida.");
+                System.out.println("Opcao invalida.");
             }
         }
     }
     
     private void abrirFiltrosNoFeed() {
-        System.out.println("\n--- Filtros de denúncias ---");
+        System.out.println("\n--- Filtros de denuncias ---");
         System.out.println("Status: 1 - pendente | 2 - em andamento | 3 - resolvido | 0 - todos");
         System.out.print("Escolha: ");
         int opStatus = Integer.parseInt(scanner.nextLine());
@@ -118,17 +118,25 @@ public class HomeView {
     }
 
     private void criarDenuncia() {
-        System.out.println("\n--- Nova denúncia ---");
+        System.out.println("\n--- Nova denuncia ---");
         System.out.print("Descrição: ");
         String descricao = scanner.nextLine();
+
+        System.out.print("Digite o CEP do local: ");
+        String cep = scanner.nextLine();
+
         System.out.print("Status: ");
         String status = scanner.nextLine();
+
         System.out.print("Visibilidade (publico/anonimo): ");
         String visibilidade = scanner.nextLine();
+
         System.out.print("Foto (URL ou caminho): ");
         String foto = scanner.nextLine();
+
         System.out.print("Video (URL ou caminho): ");
         String video = scanner.nextLine();
+
         System.out.print("ID da categoria: ");
         int categoriaId = Integer.parseInt(scanner.nextLine());
 
@@ -136,23 +144,23 @@ public class HomeView {
         
         denunciaController.registrarDenuncia(
             usuarioMoradorId, descricao, status, visibilidade, 
-            foto, video, categoriaId, coords[0], coords[1]
+            foto, video, categoriaId, coords[0], coords[1], cep
         );
         
         System.out.println("Denuncia salva com sucesso!");
     }
 
     private void verHistorico() {
-        System.out.println("\n--- Minhas denúncias ---");
+        System.out.println("\n--- Minhas denuncias ---");
         List<Denuncia> minhas = denunciaController.minhasDenuncias(usuarioMoradorId);
 
         if (minhas.isEmpty()) {
-            System.out.println("Você ainda não fez nenhuma denúncia.");
+            System.out.println("Voce ainda não fez nenhuma denuncia.");
         } else {
             for (Denuncia d : minhas) {
                 System.out.println("----------------------------------");
                 System.out.println("ID: " + d.getDenunciaId());
-                System.out.println("Descrição: " + d.getDescricao());
+                System.out.println("Descricao: " + d.getDescricao());
                 System.out.println("Status: [" + d.getStatus() + "]");
                 System.out.println("Categoria: " + d.getCategoriaId());
                 System.out.println("Postado em: " + d.getDataHora());
@@ -171,12 +179,12 @@ public class HomeView {
 
         Denuncia d = denunciaController.buscarPorId(denunciaId);
         if (d == null) {
-            System.out.println("Denúncia não encontrada.");
+            System.out.println("Denuncia nao encontrada.");
             return;
         }
 
-        System.out.println("\n--- Detalhes da denúncia ---");
-        System.out.println("Descrição: " + d.getDescricao());
+        System.out.println("\n--- Detalhes da denuncia ---");
+        System.out.println("Descricao: " + d.getDescricao());
         System.out.println("Status: " + d.getStatus());
         System.out.println("Categoria: " + d.getCategoriaId());
         System.out.println("Visibilidade: " + d.getVisibilidade());
@@ -184,30 +192,30 @@ public class HomeView {
 
         List<Comentario> comentarios = comentarioController.listarComentarios(denunciaId);
         if (comentarios.isEmpty()) {
-            System.out.println("Nenhum comentário ainda.");
+            System.out.println("Nenhum comentario ainda.");
         } else {
-            System.out.println("\nComentários:");
+            System.out.println("\nComentarios:");
             for (Comentario c : comentarios) {
-                System.out.println("- " + c.getComentario() + " (Usuário " + c.getNomeAutor() + ")");
+                System.out.println("- " + c.getComentario() + " (Usuario " + c.getNomeAutor() + ")");
             }
         }
 
-        System.out.println("\nOpções:");
-        System.out.println("1. Curtir denúncia");
-        System.out.println("2. Adicionar comentário");
+        System.out.println("\nOpcoes:");
+        System.out.println("1. Curtir denuncia");
+        System.out.println("2. Adicionar comentario");
         System.out.println("ENTER para voltar");
         String escolha = scanner.nextLine();
 
         switch (escolha) {
             case "1":
                 curtidaController.curtirDenuncia(denunciaId, usuarioMoradorId);
-                System.out.println("Você curtiu esta denúncia!");
+                System.out.println("Voce curtiu esta denuncia!");
                 break;
             case "2":
-                System.out.print("Digite seu comentário: ");
+                System.out.print("Digite seu comentario: ");
                 String texto = scanner.nextLine();
                 comentarioController.adicionarComentario(denunciaId, usuarioMoradorId, texto);
-                System.out.println("Comentário adicionado!");
+                System.out.println("Comentario adicionado!");
                 break;
             default:
                 continuarNaDenuncia = false; 

@@ -29,39 +29,41 @@ public class DenunciaController {
     public DenunciaController() {
     }
 
-    private String buscarEnderecoPeloGps(double lat, double lon) {
+    public String buscarEnderecoPeloCep(String cep) {
+
+        String cepLimpo = cep.replaceAll("[^0-9]", "");
+        
         try {
-        String url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + lon;
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("User-Agent", "PatosSemFiltros")
-                .build();
+            String url = "https://brasilapi.com.br/api/cep/v1/" + cepLimpo;
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
-      
-        JsonObject address = json.getAsJsonObject("address");
-        
-        String cidade = "";
-        if (address.has("city")) cidade = address.get("city").getAsString();
-        else if (address.has("town")) cidade = address.get("town").getAsString();
-        else if (address.has("village")) cidade = address.get("village").getAsString();
-        
-        String estado = address.has("state") ? address.get("state").getAsString() : "PB";
-
-        return cidade + " - " + estado;
-        
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            if (response.statusCode() == 200) {
+                JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
+                
+                String rua = json.get("street").getAsString();
+                String bairro = json.get("neighborhood").getAsString();
+                String cidade = json.get("city").getAsString();
+                String estado = json.get("state").getAsString();
+                
+                return String.format("%s, %s, %s - %s", rua, bairro, cidade, estado);
+            } else {
+                return "Endereco não encontrado para o CEP informado.";
+            }
         } catch (Exception e) {
-            return "Localizacao nao disponivelo nao disponivel";
+            return "Erro ao processar localizacao.";
         }
     }
 
     public void registrarDenuncia(int usuarioMoradorId, String descricao, String status,
                                   String visibilidade, String foto, String video, int categoriaId,
-                                  double lat, double lon) {
+                                  double lat, double lon, String cep) {
         
-        String enderecoReal = buscarEnderecoPeloGps(lat, lon);
+        String enderecoReal = buscarEnderecoPeloCep(cep);
         String descricaoFinal = descricao + "\n\n Local: " + enderecoReal;
 
         String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id, data_hora) " +
