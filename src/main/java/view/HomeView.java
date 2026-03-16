@@ -30,13 +30,13 @@ public class HomeView {
         boolean logado = true;
 
         while (logado) {
-            System.out.println("\n--- Usuario: " + nomeUsuario.toUpperCase() + " ---");
-            System.out.println("1. Feed de denuncias");
-            System.out.println("2. Enviar nova denuncia");
-            System.out.println("3. Minhas denuncias");
+            System.out.println("\n--- Usuário: " + nomeUsuario.toUpperCase() + " ---");
+            System.out.println("1. Feed de denúncias");
+            System.out.println("2. Enviar nova denúncia");
+            System.out.println("3. Minhas denúncias");
             System.out.println("4. Meu perfil");
             System.out.println("5. Logout");
-            System.out.print("Opcao: ");
+            System.out.print("Opção: ");
 
             String escolha = scanner.nextLine();
 
@@ -69,7 +69,7 @@ public class HomeView {
     }
 
     private void menuFeed(List<Denuncia> lista) {
-       System.out.println("\n--- Feed de denuncias ---");
+       System.out.println("\n--- Feed de denúncias ---");
 
         if (lista.isEmpty()) {
             System.out.println("Nenhuma denuncia encontrada.");
@@ -77,7 +77,7 @@ public class HomeView {
             for (Denuncia d : lista) {
                 System.out.println("----------------------------------");
                 System.out.println("ID: " + d.getDenunciaId());
-                System.out.println("Descricao: " + d.getDescricao());
+                System.out.println("Descrição: " + d.getDescricao());
                 System.out.println("Status: [" + d.getStatus() + "]");
                 System.out.println("Categoria: " + d.getCategoriaId());
                 System.out.println("Curtidas: " + curtidaController.contarCurtidas(d.getDenunciaId()));
@@ -101,7 +101,7 @@ public class HomeView {
     }
     
     private void abrirFiltrosNoFeed() {
-        System.out.println("\n--- Filtros de denuncias ---");
+        System.out.println("\n--- Filtros de denúncias ---");
         System.out.println("Status: 1 - pendente | 2 - em andamento | 3 - resolvido | 0 - todos");
         System.out.print("Escolha: ");
         int opStatus = Integer.parseInt(scanner.nextLine());
@@ -121,7 +121,7 @@ public class HomeView {
     }
 
     private void criarDenuncia() {
-        System.out.println("\n--- Nova denuncia ---");
+        System.out.println("\n--- Nova denúncia ---");
         System.out.print("Descrição: ");
         String descricao = scanner.nextLine();
 
@@ -150,22 +150,22 @@ public class HomeView {
             foto, video, categoriaId, coords[0], coords[1], cep
         );
         
-        System.out.println("Denuncia salva com sucesso!");
+        System.out.println("Denúncia salva com sucesso!");
     }
 
     private void verHistorico() {
-        System.out.println("\n--- Minhas denuncias ---");
+        System.out.println("\n--- Minhas denúncias ---");
         List<Denuncia> minhas = denunciaController.minhasDenuncias(usuarioMoradorId);
 
         java.time.format.DateTimeFormatter formatador = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
 
         if (minhas.isEmpty()) {
-            System.out.println("Voce ainda nao fez nenhuma denuncia.");
+            System.out.println("Voce ainda não fez nenhuma denúncia.");
         } else {
             for (Denuncia d : minhas) {
                 System.out.println("----------------------------------");
                 System.out.println("ID: " + d.getDenunciaId());
-                System.out.println("Descricao: " + d.getDescricao());
+                System.out.println("Descrição: " + d.getDescricao());
                 System.out.println("Status: " + d.getStatus() + "");
                 System.out.println("Categoria: " + d.getCategoriaId());
 
@@ -190,8 +190,8 @@ public class HomeView {
             return;
         }
 
-        System.out.println("\n--- Detalhes da denuncia ---");
-        System.out.println("Descricao: " + d.getDescricao());
+        System.out.println("\n--- Detalhes da denúncia ---");
+        System.out.println("Descrição: " + d.getDescricao());
         System.out.println("Status: " + d.getStatus());
         System.out.println("Categoria: " + d.getCategoriaId());
         System.out.println("Visibilidade: " + d.getVisibilidade());
@@ -207,7 +207,7 @@ public class HomeView {
             }
         }
 
-        System.out.println("\nOpcoes:");
+        System.out.println("\nOpções:");
         System.out.println("1. Curtir denuncia");
         System.out.println("2. Adicionar comentario");
         System.out.println("ENTER para voltar");

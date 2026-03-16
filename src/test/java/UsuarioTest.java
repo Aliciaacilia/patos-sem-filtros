@@ -13,6 +13,7 @@ public class UsuarioTest {
         Usuario user = new UsuarioMorador(1, "Alicia", "alicia@email.com", "123", false, "Morador", "000.000.000-00");
 
         assertEquals("Alicia", user.getNome());
+         assertEquals("alicia@email.com", user.getEmail()); 
         assertEquals("Morador", user.getTipo());
         assertFalse(user.isEmailVerificado());
     }
@@ -22,6 +23,7 @@ public class UsuarioTest {
         Usuario user = new UsuarioModerador(2, "Darysthon", "darys@email.com", "456", true, "Moderador", "Nivel 1");
 
         assertEquals("Darysthon", user.getNome());
+        assertEquals("darys@email.com", user.getEmail()); 
         assertEquals("Moderador", user.getTipo());
         assertTrue(user.isEmailVerificado());
     }
