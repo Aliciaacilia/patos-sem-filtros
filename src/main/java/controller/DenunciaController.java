@@ -31,19 +31,29 @@ public class DenunciaController {
 
     private String buscarEnderecoPeloGps(double lat, double lon) {
         try {
-            String url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + lon;
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .header("User-Agent", "PatosSemFiltros")
-                    .build();
+        String url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + lon;
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("User-Agent", "PatosSemFiltros")
+                .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
-            
-            return json.get("display_name").getAsString();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
+      
+        JsonObject address = json.getAsJsonObject("address");
+        
+        String cidade = "";
+        if (address.has("city")) cidade = address.get("city").getAsString();
+        else if (address.has("town")) cidade = address.get("town").getAsString();
+        else if (address.has("village")) cidade = address.get("village").getAsString();
+        
+        String estado = address.has("state") ? address.get("state").getAsString() : "PB";
+
+        return cidade + " - " + estado;
+        
         } catch (Exception e) {
-            return "Localização não disponível";
+            return "Localizacao nao disponivel";
         }
     }
 
