@@ -13,7 +13,9 @@ public class Denuncia {
     private String visibilidade;  
     private String foto;
     private String video;
-    private int categoriaId;      
+    private int categoriaId;   
+    private String cep;
+    private String enderecoExibicao;   
 
     private List<Comentario> comentarios = new ArrayList<>();
     private List<Integer> curtidas = new ArrayList<>(); 
@@ -73,6 +75,12 @@ public class Denuncia {
 
     public int getCategoriaId() { return categoriaId; }
     public void setCategoriaId(int categoriaId) { this.categoriaId = categoriaId; }
+
+    public String getCep() { return cep; }
+    public void setCep(String cep) { this.cep = cep; }
+
+    public String getEnderecoExibicao() { return enderecoExibicao; }
+    public void setEnderecoExibicao(String enderecoExibicao) { this.enderecoExibicao = enderecoExibicao; }
 
     public void adicionarComentario(Comentario comentario) {
         comentarios.add(comentario);
