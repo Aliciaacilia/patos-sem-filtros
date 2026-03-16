@@ -53,7 +53,7 @@ public class DenunciaController {
         return cidade + " - " + estado;
         
         } catch (Exception e) {
-            return "Localizacao nao disponivel";
+            return "Localizacao nao disponivelo nao disponivel";
         }
     }
 

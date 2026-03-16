@@ -8,19 +8,19 @@ public class UsuarioTest {
 
     @Test
     void testMorador() {
-        Usuario user = new UsuarioMorador(1, "Alicia", "alicia@email.com", "123", false, "MORADOR", "000.000.000-00");
+        Usuario user = new UsuarioMorador(1, "Alicia", "alicia@email.com", "123", false, "Morador", "000.000.000-00");
 
         assertEquals("Alicia", user.getNome());
-        assertEquals("MORADOR", user.getTipo());
+        assertEquals("Morador", user.getTipo());
         assertFalse(user.isEmailVerificado());
     }
 
     @Test
     void testModerador() {
-        Usuario user = new UsuarioModerador(2, "Darysthon", "darys@email.com", "456", true, "MODERADOR", "Nivel 1");
+        Usuario user = new UsuarioModerador(2, "Darysthon", "darys@email.com", "456", true, "Moderador", "Nivel 1");
 
         assertEquals("Darysthon", user.getNome());
-        assertEquals("MODERADOR", user.getTipo());
+        assertEquals("Moderador", user.getTipo());
         assertTrue(user.isEmailVerificado());
     }
 
