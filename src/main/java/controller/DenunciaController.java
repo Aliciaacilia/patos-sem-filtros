@@ -64,7 +64,7 @@ public class DenunciaController {
                                   double lat, double lon, String cep) {
         
         String enderecoReal = buscarEnderecoPeloCep(cep);
-        String descricaoFinal = descricao + "\n\nLocal: " + enderecoReal;
+        String descricaoFinal = descricao.trim() + " Local: " + enderecoReal.trim();
 
         String sql = "INSERT INTO denuncias (usuario_morador_id, descricao, status, visibilidade, foto, video, categoria_id, data_hora) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

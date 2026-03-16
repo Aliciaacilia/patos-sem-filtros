@@ -3,6 +3,9 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import controller.ComentarioController;
 import controller.CurtidaController;
 import controller.DenunciaController;
@@ -154,6 +157,8 @@ public class HomeView {
         System.out.println("\n--- Minhas denuncias ---");
         List<Denuncia> minhas = denunciaController.minhasDenuncias(usuarioMoradorId);
 
+        java.time.format.DateTimeFormatter formatador = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm");
+
         if (minhas.isEmpty()) {
             System.out.println("Voce ainda nao fez nenhuma denuncia.");
         } else {
@@ -163,7 +168,9 @@ public class HomeView {
                 System.out.println("Descricao: " + d.getDescricao());
                 System.out.println("Status: " + d.getStatus() + "");
                 System.out.println("Categoria: " + d.getCategoriaId());
-                System.out.println("Postado em: " + d.getDataHora());
+
+                String dataBonita = d.getDataHora().format(formatador);
+                System.out.println("Postado em: " + dataBonita);
             }
         }
     }
